@@ -2,7 +2,7 @@
   "profiles": {
     "ExcelCellFinder.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\document\\smart\\trunk\\060_結合テスト\\01_テストスクリプト\\テストデータ\\結合テスト設計書_104_取引一覧_テストデータ\\結合テスト\\取引一覧_自動仕訳ルールテストデータ作成ツール\\R01.自動仕訳アイコン表示確認用 - コピー.xlsm\""
+      "commandLineArgs": "C:\\document\\smart\\trunk\\060_結合テスト\\01_テストスクリプト\\テストデータ\\結合テスト設計書_401_Smart変換_テストデータ"
     }
   }
 }

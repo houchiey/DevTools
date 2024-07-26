@@ -2,17 +2,23 @@
 
 namespace ExcelCellFinder.Core
 {
-    public class FoundCell(IXLCell cell)
+    public class FoundCell(string wbPath, IXLCell cell, Exception? e)
     {
-        private readonly IXLCell cell = cell;
+        public string WorkbookPath { get; } = wbPath;
 
-        public string SheetName { get { return this.cell.Worksheet.Name; } }
-        public int RowNumber { get { return this.cell.Address.RowNumber; } }
-        public int ColumnNumber { get { return this.cell.Address.ColumnNumber; } }
+        public string SheetName { get; } = cell.Worksheet.Name;
+
+        public int RowNumber { get; } = cell.Address.RowNumber;
+
+        public int ColumnNumber { get; } = cell.Address.ColumnNumber;
+
+        public string Column { get; } = cell.Address.ColumnLetter;
+
+        public string? ErrorMessage { get; } = e?.Message;
 
         public override string ToString()
         {
-            return $"{this.SheetName}!{this.cell.Address.ColumnLetter}{this.RowNumber}";
+            return $"{SheetName}!{Column}{RowNumber}";
         }
     }
 }
