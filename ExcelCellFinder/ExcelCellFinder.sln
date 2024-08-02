@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelCellFinder.Core", "ExcelCellFinder.Core\ExcelCellFinder.Core.csproj", "{99015EC1-A108-472F-AA28-59338F50B9D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelCellFinder.CLI", "ExcelCellFinder.CLI\ExcelCellFinder.CLI.csproj", "{2BFFA7EF-007C-4D61-B6D7-3A6DABDC3183}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{6A5B2CCE-04B6-4405-BC40-C479CF269FC2}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99015EC1-A108-472F-AA28-59338F50B9D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99015EC1-A108-472F-AA28-59338F50B9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99015EC1-A108-472F-AA28-59338F50B9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99015EC1-A108-472F-AA28-59338F50B9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BFFA7EF-007C-4D61-B6D7-3A6DABDC3183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BFFA7EF-007C-4D61-B6D7-3A6DABDC3183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BFFA7EF-007C-4D61-B6D7-3A6DABDC3183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BFFA7EF-007C-4D61-B6D7-3A6DABDC3183}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33DC5765-0349-4E8D-9893-F25AD8BE0FEF}
+	EndGlobalSection
+EndGlobal

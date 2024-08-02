@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExcelCellFinder.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\document\\smart\\trunk\\060_結合テスト\\01_テストスクリプト\\テストデータ\\結合テスト設計書_401_Smart変換_テストデータ"
+    }
+  }
+}
