@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExcelCellFinder.App
+namespace ExcelCellFinder.App.Views.Components
 {
     /// <summary>
-    /// ResultPage.xaml の相互作用ロジック
+    /// FolderSelectionComponent.xaml の相互作用ロジック
     /// </summary>
-    public partial class ResultPage : Page
+    public partial class FolderSelectionComponent : UserControl
     {
-        public ResultPage()
+        public FolderSelectionComponent()
         {
             InitializeComponent();
         }

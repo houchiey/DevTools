@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExcelCellFinder.App
+namespace ExcelCellFinder.App.Views.Pages
 {
     /// <summary>
-    /// StartPage.xaml の相互作用ロジック
+    /// SetupConditionPage.xaml の相互作用ロジック
     /// </summary>
-    public partial class SetupConditionsPage : Page
+    public partial class SetupConditionPage : UserControl
     {
-        public SetupConditionsPage()
+        public SetupConditionPage()
         {
             InitializeComponent();
         }
