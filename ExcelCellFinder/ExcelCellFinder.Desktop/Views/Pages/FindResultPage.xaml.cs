@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ExcelCellFinder.Desktop.Services;
+using ExcelCellFinder.Desktop.ViewModels.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,21 +12,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ExcelCellFinder.Desktop.ViewModels;
-using ExcelCellFinder.Desktop.Services;
 
-namespace ExcelCellFinder.Desktop.Views
+namespace ExcelCellFinder.Desktop.Views.Pages
 {
     /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
+    /// FindResultPage.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FindResultPage : UserControl
     {
-        public MainWindow()
+        public FindResultPage()
         {
             InitializeComponent();
-            RoutingService.Initialize((MainWindowViewModel)this.DataContext);
+            this.DataContext = (FindResultPageViewModel) RoutingService.Instance.Main.CurrentPage;
         }
     }
 }

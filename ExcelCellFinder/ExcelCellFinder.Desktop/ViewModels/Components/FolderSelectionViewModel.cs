@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExcelCellFinder.App.ViewModels.Components
+namespace ExcelCellFinder.Desktop.ViewModels.Components
 {
     class FolderSelectionViewModel
     {

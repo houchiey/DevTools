@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace ExcelCellFinder.App.ViewModels.Pages
+namespace ExcelCellFinder.Desktop.ViewModels.Pages
 {
     public abstract partial class PageViewModelBase : ObservableObject
     {

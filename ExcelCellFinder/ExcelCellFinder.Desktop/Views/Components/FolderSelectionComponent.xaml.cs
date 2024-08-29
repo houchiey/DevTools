@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExcelCellFinder.App.Views.Components
+namespace ExcelCellFinder.Desktop.Views.Components
 {
     /// <summary>
     /// FolderSelectionComponent.xaml の相互作用ロジック
