@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ExcelCellFinder.Core.Options;
+using ExcelCellFinder.Core.Options.Interface;
 using ExcelCellFinder.Desktop.Services;
 using ExcelCellFinder.Desktop.ViewModels.Pages;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -23,6 +25,8 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         [ObservableProperty]
         private string _findFolderPath;
 
+        public IFindCellOptions FindCellOption { get; } = OptionFactory.GetOption();
+
         [RelayCommand]
         private void SelectFolder()
         {
@@ -40,8 +44,13 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         [RelayCommand]
         private void ExecuteSearch() 
         {
-            // TODO 引数付コンストラクタにしてしまうと、
-            RoutingService.Instance.MoveTo(new FindResultPageViewModel(this));
+            FindCellOption.TargetDirectoryInfo = new System.IO.DirectoryInfo(FindFolderPath);
+            FindCellOption.Mode = TargetMode.Directory;
+
+            var service = new FindCellService();
+            var result = service.FindCell(FindCellOption);
+
+            RoutingService.Instance.MoveTo(new FindResultPageViewModel(result, this));
         }
     }
 }
