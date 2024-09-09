@@ -13,11 +13,6 @@ namespace ExcelCellFinder.Desktop.Models
         [RelayCommand]
         private void OpenExcelFile()
         {
-            //if (this == null)
-            //{
-            //    return;
-            //}
-
             var service = OpenExcelServiceFactory.GetService();
             service.OpenExcelFile(FoundFilePath, FoundSheet, FoundCell);
         }

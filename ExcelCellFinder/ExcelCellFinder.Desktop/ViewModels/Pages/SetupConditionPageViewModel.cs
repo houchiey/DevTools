@@ -38,6 +38,11 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         [RelayCommand]
         private void ExecuteSearch()
         {
+            if(string.IsNullOrEmpty(FindFolderPath))
+            {
+                return;
+            }
+            
             FindCellOption.TargetDirectoryInfo = new System.IO.DirectoryInfo(FindFolderPath);
             FindCellOption.Mode = TargetMode.Directory;
 
