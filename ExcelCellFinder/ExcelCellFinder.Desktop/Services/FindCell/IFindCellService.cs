@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExcelCellFinder.Desktop.Services
+namespace ExcelCellFinder.Desktop.Services.FindCell
 {
     public interface IFindCellService
     {
-        public IResult FindCell (IFindCellOptions options);
+        public IResult FindCell(IFindCellOptions options);
     }
 }

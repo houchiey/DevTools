@@ -3,13 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using ExcelCellFinder.Core.Result.Interface;
 using ExcelCellFinder.Desktop.Models;
 using ExcelCellFinder.Desktop.Services;
-using ExcelCellFinder.Desktop.ViewModels.Pages;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ExcelCellFinder.Desktop.Services.OpenExcel;
 
 namespace ExcelCellFinder.Desktop.ViewModels.Pages
 {
@@ -21,6 +15,10 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
 
         [ObservableProperty]
         private IList<FindResultGridItem> _findResultGridData;
+
+        [ObservableProperty]
+        private FindResultGridItem? _selectedItem;
+
 
         public FindResultPageViewModel(IResult findCellResult, SetupConditionPageViewModel origin)
         {
@@ -37,11 +35,23 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
             RoutingService.Instance.MoveTo(_originViewModel);
         }
 
+        [RelayCommand]
+        private void OpenExcelFile()
+        {
+            if (SelectedItem == null)
+            {
+                return;
+            }
+
+            var service = OpenExcelServiceFactory.GetService();
+            service.OpenExcelFile(SelectedItem.FoundFilePath, SelectedItem.FoundSheet, SelectedItem.FoundCell);
+        }
+
         private IList<FindResultGridItem> ConvertResultToGridData(IResult findCellResult)
         {
             var gridData = new List<FindResultGridItem>();
-            
-            foreach(var file in findCellResult.ProcessedFiles)
+
+            foreach (var file in findCellResult.ProcessedFiles)
             {
                 gridData.AddRange(file.FoundCells.Select(s =>
                 {

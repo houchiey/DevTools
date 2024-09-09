@@ -3,14 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using ExcelCellFinder.Core.Options;
 using ExcelCellFinder.Core.Options.Interface;
 using ExcelCellFinder.Desktop.Services;
-using ExcelCellFinder.Desktop.ViewModels.Pages;
+using ExcelCellFinder.Desktop.Services.FindCell;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Navigation;
 
 namespace ExcelCellFinder.Desktop.ViewModels.Pages
 {
@@ -42,12 +36,12 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         }
 
         [RelayCommand]
-        private void ExecuteSearch() 
+        private void ExecuteSearch()
         {
             FindCellOption.TargetDirectoryInfo = new System.IO.DirectoryInfo(FindFolderPath);
             FindCellOption.Mode = TargetMode.Directory;
 
-            var service = new FindCellService();
+            var service = FindCellServiceFactory.GetService();
             var result = service.FindCell(FindCellOption);
 
             RoutingService.Instance.MoveTo(new FindResultPageViewModel(result, this));
