@@ -4,6 +4,7 @@ using ExcelCellFinder.Core.Result.Interface;
 using ExcelCellFinder.Desktop.Models;
 using ExcelCellFinder.Desktop.Services;
 using ExcelCellFinder.Desktop.Services.OpenExcel;
+using System.Collections.ObjectModel;
 
 namespace ExcelCellFinder.Desktop.ViewModels.Pages
 {
@@ -14,7 +15,7 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         private IResult _findCellResult;
 
         [ObservableProperty]
-        private IList<FindResultGridItem> _findResultGridData;
+        private ObservableCollection<FindResultGridItem> _findResultGridData;
 
         [ObservableProperty]
         private FindResultGridItem? _selectedItem;
@@ -38,30 +39,28 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         [RelayCommand]
         private void OpenExcelFile()
         {
-            if (SelectedItem == null)
+            if (SelectedItem != null)
             {
-                return;
-            }
-
-            var service = OpenExcelServiceFactory.GetService();
-            service.OpenExcelFile(SelectedItem.FoundFilePath, SelectedItem.FoundSheet, SelectedItem.FoundCell);
+                var service = OpenExcelServiceFactory.GetService();
+                service.OpenExcelFile(SelectedItem.FoundFilePath, SelectedItem.FoundSheet, SelectedItem.FoundCell);
+            }            
         }
 
-        private IList<FindResultGridItem> ConvertResultToGridData(IResult findCellResult)
+        private ObservableCollection<FindResultGridItem> ConvertResultToGridData(IResult findCellResult)
         {
-            var gridData = new List<FindResultGridItem>();
+            var gridData = new ObservableCollection<FindResultGridItem>();
 
             foreach (var file in findCellResult.ProcessedFiles)
             {
-                gridData.AddRange(file.FoundCells.Select(s =>
+                foreach (var cell in file.FoundCells)
                 {
-                    return new FindResultGridItem
+                    gridData.Add(new FindResultGridItem
                     {
                         FoundFilePath = file.FileInfo.FullName,
-                        FoundSheet = s.SheetName,
-                        FoundCell = s.ToString(),
-                    };
-                }));
+                        FoundSheet = cell.SheetName,
+                        FoundCell = cell.ToString(),
+                    });
+                }
             }
 
             return gridData;

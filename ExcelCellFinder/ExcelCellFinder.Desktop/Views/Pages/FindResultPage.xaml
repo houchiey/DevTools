@@ -14,8 +14,7 @@
         <TextBlock Text="結果一覧" Margin="10,10,10,0"/>
         <DataGrid
             x:Name="resultGrid"
-            ItemsSource="{Binding FindResultGridData}" AutoGenerateColumns="False"
-            SelectedItem="{Binding SelectedItem}">
+            ItemsSource="{Binding FindResultGridData}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Path" Binding="{Binding FoundFilePath}"/>
                 <DataGridTextColumn Header="Sheet" Binding="{Binding FoundSheet}"/>
@@ -23,7 +22,7 @@
                 <DataGridTemplateColumn Header="開く">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="開く" Command="{Binding OpenExcelFileCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                            <Button Content="開く" Command="{Binding Path=OpenExcelFileCommand}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
