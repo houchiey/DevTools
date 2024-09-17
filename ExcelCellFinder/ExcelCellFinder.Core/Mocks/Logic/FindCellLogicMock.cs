@@ -1,21 +1,23 @@
-﻿using ExcelCellFinder.Core.Logic;
+﻿using ExcelCellFinder.Core.Logic.FindCell;
 using ExcelCellFinder.Core.Mocks.Result;
 using ExcelCellFinder.Core.Options.Interface;
 using ExcelCellFinder.Core.Result;
 using ExcelCellFinder.Core.Result.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelCellFinder.Core.Mocks.Logic
 {
     internal class FindCellLogicMock : IFindCellLogic
     {
-        public IResult FindCell(IFindCellOptions options)
+        private IFindCellOptions Options { get; }
+
+        internal FindCellLogicMock(IFindCellOptions options)
         {
-            var result = new FindCellResult(options, false);
+            Options = options;
+        }
+
+        public IResult FindCell()
+        {
+            var result = new FindCellResult(Options, false);
 
             var file = new ResultFile(new FileInfo(@"D:\work\ExcelCellFinder\ForMocks\MockExcelFile.xlsx"));
             file.FoundCells.Add(new FoundCellMock("Sheet1", 1, "A"));

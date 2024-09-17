@@ -3,7 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using ExcelCellFinder.Core.Result.Interface;
 using ExcelCellFinder.Desktop.Models;
 using ExcelCellFinder.Desktop.Services;
-using ExcelCellFinder.Desktop.Services.OpenExcel;
+using ExcelCellFinder.Desktop.Services.SaveResult;
+using Microsoft.Win32;
 using System.Collections.ObjectModel;
 
 namespace ExcelCellFinder.Desktop.ViewModels.Pages
@@ -16,9 +17,6 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
 
         [ObservableProperty]
         private ObservableCollection<FindResultGridItem> _findResultGridData;
-
-        [ObservableProperty]
-        private FindResultGridItem? _selectedItem;
 
 
         public FindResultPageViewModel(IResult findCellResult, SetupConditionPageViewModel origin)
@@ -37,16 +35,24 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         }
 
         [RelayCommand]
-        private void OpenExcelFile()
+        private void SaveResult()
         {
-            if (SelectedItem != null)
+            var saveFileDialog = new SaveFileDialog
             {
-                var service = OpenExcelServiceFactory.GetService();
-                service.OpenExcelFile(SelectedItem.FoundFilePath, SelectedItem.FoundSheet, SelectedItem.FoundCell);
-            }            
+                Filter = "Excelファイル|*.xlsx",
+                DefaultExt = ".xlsx",
+                FilterIndex = 1,
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                var saveFilePath = saveFileDialog.FileName;
+                var service = SaveResultServiceFactory.GetService(saveFilePath);
+                service.SaveResult(this._findCellResult);
+            }
         }
 
-        private ObservableCollection<FindResultGridItem> ConvertResultToGridData(IResult findCellResult)
+        private static ObservableCollection<FindResultGridItem> ConvertResultToGridData(IResult findCellResult)
         {
             var gridData = new ObservableCollection<FindResultGridItem>();
 
@@ -58,7 +64,7 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
                     {
                         FoundFilePath = file.FileInfo.FullName,
                         FoundSheet = cell.SheetName,
-                        FoundCell = cell.ToString(),
+                        FoundCell = cell.GetCellName(),
                     });
                 }
             }
