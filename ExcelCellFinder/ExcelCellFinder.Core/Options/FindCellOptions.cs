@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExcelCellFinder.Core.Options.Interface;
+﻿using ExcelCellFinder.Core.Options.Interface;
 
 namespace ExcelCellFinder.Core.Options
 {
@@ -11,9 +6,9 @@ namespace ExcelCellFinder.Core.Options
     {
         public FileInfo? TargetFileInfo { get; set; }
         public DirectoryInfo? TargetDirectoryInfo { get; set; }
-        public TargetMode? Mode { get; set; }
+        public TargetMode Mode { get; set; }
         public bool IsRecursively { get; set; }
-        public IEnumerable<TargetCellType>? TargetCellTypes { get; set; }
+        public IEnumerable<TargetCellType> TargetCellTypes { get; set; } = [];
 
         public bool IsValidOption()
         {

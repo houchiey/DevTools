@@ -12,20 +12,15 @@
 
     <ui:SimpleStackPanel>
         <TextBlock Text="結果一覧" Margin="10,10,10,0"/>
+        <Button Content="結果をダウンロード" Command="{Binding SaveResultCommand, Mode=OneTime}" Margin="10" HorizontalContentAlignment="Stretch" />
         <DataGrid
             x:Name="resultGrid"
-            ItemsSource="{Binding FindResultGridData}" AutoGenerateColumns="False">
+            ItemsSource="{Binding FindResultGridData}" AutoGenerateColumns="False"
+            VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Path" Binding="{Binding FoundFilePath}"/>
                 <DataGridTextColumn Header="Sheet" Binding="{Binding FoundSheet}"/>
                 <DataGridTextColumn Header="Cell" Binding="{Binding FoundCell}"/>
-                <DataGridTemplateColumn Header="開く">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="開く" Command="{Binding Path=OpenExcelFileCommand}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

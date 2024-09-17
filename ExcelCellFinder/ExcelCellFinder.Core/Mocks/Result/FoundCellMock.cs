@@ -1,25 +1,17 @@
-﻿using ClosedXML.Excel;
-using ExcelCellFinder.Core.Result.Interface;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExcelCellFinder.Core.Result.Interface;
 
 namespace ExcelCellFinder.Core.Mocks.Result
 {
     internal class FoundCellMock : IFoundCell
     {
-        internal FoundCellMock(string sheetName, int rowNumber, string columnLetter) 
+        internal FoundCellMock(string sheetName, int rowNumber, string columnLetter)
         {
             SheetName = sheetName;
             RowNumber = rowNumber;
             ColumnNumber = ColumnLetterToNumber(columnLetter);
             Column = columnLetter;
         }
-        
+
         public string SheetName { get; set; }
         public int RowNumber { get; set; }
         public int ColumnNumber { get; set; }
@@ -45,6 +37,11 @@ namespace ExcelCellFinder.Core.Mocks.Result
             }
 
             return sum;
+        }
+
+        public string GetCellName()
+        {
+            throw new NotImplementedException();
         }
     }
 }

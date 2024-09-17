@@ -1,10 +1,5 @@
 ﻿using ExcelCellFinder.Core.Options.Interface;
 using ExcelCellFinder.Core.Result.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelCellFinder.Core.Result
 {
@@ -16,9 +11,18 @@ namespace ExcelCellFinder.Core.Result
             IsError = isError;
             ProcessedFiles = [];
         }
-        
+
         public IFindCellOptions ExecutedOptions { get; set; }
         public bool IsError { get; set; }
         public IList<IResultFile> ProcessedFiles { get; set; }
+
+        public IResult Merge(IResult anotherResult)
+        {
+            return new FindCellResult(ExecutedOptions, IsError)
+            {
+                IsError = IsError || anotherResult.IsError,
+                ProcessedFiles = ProcessedFiles.Concat(anotherResult.ProcessedFiles).ToList()
+            };
+        }
     }
 }
