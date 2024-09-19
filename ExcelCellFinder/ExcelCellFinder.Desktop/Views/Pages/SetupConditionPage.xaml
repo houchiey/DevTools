@@ -13,7 +13,7 @@
     <ui:SimpleStackPanel>
         <TextBlock Text="対象フォルダ" Margin="10,10,10,0"/>
         <WrapPanel>
-            <TextBox Text="{Binding FindFolderPath}" IsReadOnly="True" Margin="10,10,0,10" MinWidth="300"/>
+            <TextBox Text="{Binding FindFolderPath}" IsReadOnly="True" Margin="10,10,0,10" MinWidth="300" MaxWidth="600"/>
             <Button Content="フォルダを選択" Command="{Binding SelectFolderCommand, Mode=OneTime}" Margin="1,10,10,10"/>
         </WrapPanel>
         <CheckBox Content="サブフォルダを含む" IsChecked="{Binding IsRecursively}" Margin="10,10,0,10"/>
