@@ -62,9 +62,9 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
                 {
                     gridData.Add(new FindResultGridItem
                     {
-                        FoundFilePath = file.FileInfo.FullName,
-                        FoundSheet = cell.SheetName,
-                        FoundCell = cell.GetCellName(),
+                        ファイル = file.FileInfo.FullName,
+                        シート名 = cell.SheetName,
+                        セル = cell.GetCellName(),
                     });
                 }
             }

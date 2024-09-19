@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:vm="clr-namespace:ExcelCellFinder.Desktop.ViewModels"
-        xmlns:view="clr-namespace:ExcelCellFinder.Desktop.Views"
         xmlns:pagevm="clr-namespace:ExcelCellFinder.Desktop.ViewModels.Pages"
-        xmlns:page="clr-namespace:ExcelCellFinder.Desktop.Views.Pages"
+        xmlns:pages="clr-namespace:ExcelCellFinder.Desktop.Views.Pages"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="Excelセル検索" Height="450" Width="800"
+        Title="Excelセル検索" Height="500" Width="800"
         ui:WindowHelper.UseModernWindowStyle="True">
     <Window.DataContext>
         <vm:MainWindowViewModel />
@@ -19,10 +19,10 @@
         <ContentControl Margin="10" Content="{Binding CurrentPage}" />
         <ui:SimpleStackPanel.Resources>
             <DataTemplate DataType="{x:Type pagevm:SetupConditionPageViewModel}">
-                <page:SetupConditionPage />
+                <pages:SetupConditionPage />
             </DataTemplate>
             <DataTemplate DataType="{x:Type pagevm:FindResultPageViewModel}">
-                <page:FindResultPage />
+                <pages:FindResultPage />
             </DataTemplate>
         </ui:SimpleStackPanel.Resources>
     </ui:SimpleStackPanel>
