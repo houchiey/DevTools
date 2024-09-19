@@ -38,13 +38,15 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         [RelayCommand]
         private void ExecuteSearch()
         {
-            if(string.IsNullOrEmpty(FindFolderPath))
+            if (string.IsNullOrEmpty(FindFolderPath))
             {
                 return;
             }
-            
+
             FindCellOption.TargetDirectoryInfo = new System.IO.DirectoryInfo(FindFolderPath);
             FindCellOption.Mode = TargetMode.Directory;
+            FindCellOption.IsRecursively = true;
+            FindCellOption.TargetCellTypes = new[] { TargetCellType.RedColor, TargetCellType.StrikeLine };
 
             var service = FindCellServiceFactory.GetService();
             var result = service.FindCell(FindCellOption);

@@ -18,17 +18,4 @@
     <ProjectReference Include="..\ExcelCellFinder.Core\ExcelCellFinder.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Resource\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Resource\OpenExcel.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Resource\OpenExcel.xlsm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
