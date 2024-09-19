@@ -32,7 +32,12 @@ namespace ExcelCellFinder.Core.Logic.FindCell
         public IResult FindCell()
         {
             var processDirectory = new DirectoryInfo(this._path);
-            var files = processDirectory.GetFiles("*.xlsx", _isRecursively ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+            var searchOption = this._isRecursively ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+
+            var files = processDirectory
+                .GetFiles("*.xlsx", searchOption)
+                .Concat(processDirectory.GetFiles("*.xlsm", searchOption))
+                .ToArray();
 
             IResult wholeResult = new FindCellResult(this._originalOption, false);
 
