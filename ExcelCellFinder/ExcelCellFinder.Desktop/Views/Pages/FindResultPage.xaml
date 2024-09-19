@@ -11,19 +11,21 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <ui:SimpleStackPanel>
-        <TextBlock Text="結果一覧" Margin="10,10,10,0"/>
-        <TextBlock Text="{Binding FindResultGridData.Count, StringFormat='検索件数：{0}'}" 
-                   Margin="10,10,10,5"
-                   HorizontalAlignment="Right"/>
-        <DataGrid
-            x:Name="resultGrid"
-            ItemsSource="{Binding FindResultGridData}"
-            VerticalScrollBarVisibility="Visible"
-            MaxHeight="250"
-            CanUserAddRows="False" CanUserDeleteRows="False"
-            IsReadOnly="True"/>
+        <TextBlock Text="結果一覧" Margin="10,10,10,0" Style="{StaticResource SubtitleTextBlockStyle}" />
+
+        <ui:SimpleStackPanel Margin="5,5,5,5">
+            <TextBlock Text="{Binding FindResultGridData.Count, StringFormat='総件数：{0}'}" 
+           Margin="10,10,10,5"
+           HorizontalAlignment="Right"/>
+            <DataGrid
+                x:Name="resultGrid"
+                ItemsSource="{Binding FindResultGridData}" 
+                CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                VerticalScrollBarVisibility="Visible" MaxHeight="500" />
+        </ui:SimpleStackPanel>
+        
         <DockPanel Margin="10">
-            <Button Content="結果をダウンロード" Command="{Binding SaveResultCommand, Mode=OneTime}" Margin="10" Width="150" />
+            <Button Content="結果をダウンロード" Command="{Binding SaveResultCommand, Mode=OneTime}" Margin="10" Width="150" Style="{StaticResource AccentButtonStyle}" />
             <Button Content="戻る" Command="{Binding ReturnToSetupConditionCommand, Mode=OneTime}" Margin="10" Width="150" HorizontalAlignment="Right"/>
         </DockPanel>
     </ui:SimpleStackPanel>

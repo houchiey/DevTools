@@ -9,7 +9,7 @@
         xmlns:pages="clr-namespace:ExcelCellFinder.Desktop.Views.Pages"
         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="Excelセル検索" Height="500" Width="800"
+        Title="Excelセル検索" Height="800" Width="1000"
         ui:WindowHelper.UseModernWindowStyle="True">
     <Window.DataContext>
         <vm:MainWindowViewModel />

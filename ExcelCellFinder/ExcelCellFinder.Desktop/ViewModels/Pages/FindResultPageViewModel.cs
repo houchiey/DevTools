@@ -6,6 +6,7 @@ using ExcelCellFinder.Desktop.Services;
 using ExcelCellFinder.Desktop.Services.SaveResult;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace ExcelCellFinder.Desktop.ViewModels.Pages
 {
@@ -62,7 +63,7 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
                 {
                     gridData.Add(new FindResultGridItem
                     {
-                        ファイル = file.FileInfo.FullName,
+                        ファイル = GetRelativePath(file.FileInfo, findCellResult.ExecutedOptions?.TargetDirectoryInfo),
                         シート名 = cell.SheetName,
                         セル = cell.GetCellName(),
                     });
@@ -70,6 +71,16 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
             }
 
             return gridData;
+        }
+
+        private static string GetRelativePath(FileInfo fileInfo, DirectoryInfo? currentDirectory)
+        {
+            if (currentDirectory == null)
+            {
+                return fileInfo.FullName;
+            }
+
+            return fileInfo.FullName[(currentDirectory.FullName.Length + 1)..];
         }
     }
 }
