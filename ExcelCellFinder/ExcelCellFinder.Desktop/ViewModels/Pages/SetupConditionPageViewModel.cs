@@ -5,6 +5,7 @@ using ExcelCellFinder.Core.Options.Interface;
 using ExcelCellFinder.Desktop.Services;
 using ExcelCellFinder.Desktop.Services.FindCell;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Text.RegularExpressions;
 
 namespace ExcelCellFinder.Desktop.ViewModels.Pages
 {
@@ -22,7 +23,8 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         [ObservableProperty]
         private bool _isRecursively = true;
 
-        public IFindCellOptions FindCellOption { get; } = OptionFactory.GetOption();
+        [ObservableProperty]
+        private string _excludeDirectoryRegex = "";
 
         [RelayCommand]
         private void SelectFolder()
@@ -46,13 +48,16 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
                 return;
             }
 
-            FindCellOption.TargetDirectoryInfo = new System.IO.DirectoryInfo(FindFolderPath);
-            FindCellOption.Mode = TargetMode.Directory;
-            FindCellOption.IsRecursively = IsRecursively;
-            FindCellOption.TargetCellTypes = new[] { TargetCellType.RedColor, TargetCellType.StrikeLine };
+            var option = OptionFactory.GetOption();
+
+            option.TargetDirectoryInfo = new System.IO.DirectoryInfo(FindFolderPath);
+            option.Mode = TargetMode.Directory;
+            option.IsRecursively = IsRecursively;
+            option.ExcludeDirectoryRegex = string.IsNullOrEmpty(ExcludeDirectoryRegex) ? null : new Regex(ExcludeDirectoryRegex);
+            option.TargetCellTypes = new[] { TargetCellType.RedColor, TargetCellType.StrikeLine };
 
             var service = FindCellServiceFactory.GetService();
-            var result = service.FindCell(FindCellOption);
+            var result = service.FindCell(option);
 
             RoutingService.Instance.MoveTo(new FindResultPageViewModel(result, this));
         }

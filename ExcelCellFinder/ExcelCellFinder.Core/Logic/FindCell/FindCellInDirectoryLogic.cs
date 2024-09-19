@@ -2,6 +2,7 @@
 using ExcelCellFinder.Core.Options.Interface;
 using ExcelCellFinder.Core.Result;
 using ExcelCellFinder.Core.Result.Interface;
+using System.Text.RegularExpressions;
 
 namespace ExcelCellFinder.Core.Logic.FindCell
 {
@@ -9,6 +10,7 @@ namespace ExcelCellFinder.Core.Logic.FindCell
     {
         private string _path;
         private bool _isRecursively;
+        private Regex? _excludeDirectoryRegex;
 
         private IFindCellOptions _originalOption;
 
@@ -26,6 +28,7 @@ namespace ExcelCellFinder.Core.Logic.FindCell
 
             this._path = options.TargetDirectoryInfo.FullName;
             this._isRecursively = options.IsRecursively;
+            this._excludeDirectoryRegex = options.ExcludeDirectoryRegex;
             this._originalOption = options;
         }
 
@@ -36,8 +39,13 @@ namespace ExcelCellFinder.Core.Logic.FindCell
 
             var files = processDirectory
                 .GetFiles("*.xlsx", searchOption)
-                .Concat(processDirectory.GetFiles("*.xlsm", searchOption))
-                .ToArray();
+                .Concat(processDirectory.GetFiles("*.xlsm", searchOption));
+
+            if (_excludeDirectoryRegex != null)
+            {
+                files = files.Where(
+                    file => _excludeDirectoryRegex.IsMatch(file.DirectoryName ?? "") == false);
+            }
 
             IResult wholeResult = new FindCellResult(this._originalOption, false);
 
@@ -56,6 +64,5 @@ namespace ExcelCellFinder.Core.Logic.FindCell
 
             return wholeResult;
         }
-
     }
 }

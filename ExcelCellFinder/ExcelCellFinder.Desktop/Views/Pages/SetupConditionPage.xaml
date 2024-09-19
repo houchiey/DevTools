@@ -17,7 +17,9 @@
             <Button Content="フォルダを選択" Command="{Binding SelectFolderCommand, Mode=OneTime}" Margin="1,10,10,10"/>
         </WrapPanel>
         <CheckBox Content="サブフォルダを含む" IsChecked="{Binding IsRecursively}" Margin="10,10,0,10"/>
-        <TextBlock Text="検索対象" Margin="10,10,10,0" />
+        <TextBlock Text="除外するフォルダ" Margin="10,10,10,0" Style="{StaticResource BodyTextBlockStyle}"/>
+        <TextBox Text="{Binding ExcludeDirectoryRegex}" Margin="10,10,0,10" Width="600" HorizontalAlignment="Left" 
+                 ui:ControlHelper.PlaceholderText="正規表現で指定してください" />
         <RadioButton Content="赤字・取り消し線" IsChecked="True" IsEnabled="False" Margin="10,10,0,10" />
         <Button Content="検索開始" Command="{Binding ExecuteSearchCommand, Mode=OneTime}" Margin="50" Width="150" HorizontalAlignment="Right" />
     </ui:SimpleStackPanel>

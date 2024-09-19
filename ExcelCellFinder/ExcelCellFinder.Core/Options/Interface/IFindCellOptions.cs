@@ -1,4 +1,6 @@
-﻿namespace ExcelCellFinder.Core.Options.Interface
+﻿using System.Text.RegularExpressions;
+
+namespace ExcelCellFinder.Core.Options.Interface
 {
     public interface IFindCellOptions
     {
@@ -6,6 +8,7 @@
         public DirectoryInfo? TargetDirectoryInfo { get; set; }
         public TargetMode Mode { get; set; }
         public bool IsRecursively { get; set; }
+        public Regex? ExcludeDirectoryRegex { get; set; }
         public IEnumerable<TargetCellType> TargetCellTypes { get; set; }
 
         public bool IsValidOption();
