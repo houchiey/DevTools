@@ -19,6 +19,9 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
         [ObservableProperty]
         private string _findFolderPath;
 
+        [ObservableProperty]
+        private bool _isRecursively = true;
+
         public IFindCellOptions FindCellOption { get; } = OptionFactory.GetOption();
 
         [RelayCommand]
@@ -45,7 +48,7 @@ namespace ExcelCellFinder.Desktop.ViewModels.Pages
 
             FindCellOption.TargetDirectoryInfo = new System.IO.DirectoryInfo(FindFolderPath);
             FindCellOption.Mode = TargetMode.Directory;
-            FindCellOption.IsRecursively = true;
+            FindCellOption.IsRecursively = IsRecursively;
             FindCellOption.TargetCellTypes = new[] { TargetCellType.RedColor, TargetCellType.StrikeLine };
 
             var service = FindCellServiceFactory.GetService();

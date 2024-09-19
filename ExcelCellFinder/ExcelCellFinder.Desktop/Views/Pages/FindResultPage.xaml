@@ -12,6 +12,9 @@
 
     <ui:SimpleStackPanel>
         <TextBlock Text="結果一覧" Margin="10,10,10,0"/>
+        <TextBlock Text="{Binding FindResultGridData.Count, StringFormat='検索件数：{0}'}" 
+                   Margin="10,10,10,5"
+                   HorizontalAlignment="Right"/>
         <DataGrid
             x:Name="resultGrid"
             ItemsSource="{Binding FindResultGridData}"
